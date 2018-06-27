@@ -1,0 +1,61 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.14.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        maven {
+            credentials {
+                username = "developer"
+                password = "79GzRi7yNiJ8"
+            }
+            url = 'http://169.45.120.48:8081/nexus/content/groups/public/'
+        }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'org.springframework.boot'
+
+    group = 'com.example'
+    version = '0.0.1-SNAPSHOT'
+    sourceCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+        maven {
+            credentials {
+                username = "developer"
+                password = "79GzRi7yNiJ8"
+            }
+            url = 'http://169.45.120.48:8081/nexus/content/groups/public/'
+        }
+    }
+
+    springBoot {
+        mainClass = "Application"
+    }
+
+    sourceSets {
+        main {
+            java {
+                srcDir 'src/main/java'
+            }
+            resources {
+                srcDir 'src/main/resources'
+            }
+        }
+    }
+
+    dependencies {
+        compile('org.springframework.boot:spring-boot-starter-web')
+        testCompile('org.springframework.boot:spring-boot-starter-test')
+        compile('org.apache.commons:commons-lang3:3.7')
+    }
+}
+
